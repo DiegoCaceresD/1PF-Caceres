@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+}
+.demo-table {
+  width: 100%;
+}
+
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+  background-color: rgba(0,0,0,0.21);
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+  background-color: rgba(0,0,0,0.21);
+}
+
+
