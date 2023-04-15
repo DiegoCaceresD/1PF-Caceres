@@ -14,6 +14,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {AlumnosAbmComponent} from "./alumnos-abm/alumnos-abm.component";
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {ReactiveFormsModule} from "@angular/forms";
+import {A11yModule} from "@angular/cdk/a11y";
 
 
 
@@ -40,7 +41,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     DirectivesModule,
     MatButtonModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    A11yModule
   ]
 })
 export class AlumnsListModule { }

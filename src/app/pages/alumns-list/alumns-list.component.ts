@@ -48,27 +48,20 @@ export class AlumnsListComponent implements OnInit {
   ]
 
 
-  displayedColumns: string[] = ['id', 'nombreCompleto'  , 'fechaNacimiento'];
+  displayedColumns: string[] = ['id', 'nombreCompleto'  , 'fechaNacimiento', 'DELETE'];
   dataSource = new MatTableDataSource <Alumns> (this.alumns);
 
-  onClick(ev: MouseEvent) {
-    console.log(ev.target)
-  }
 
   aplicarFiltro(event: KeyboardEvent) {
     const filterValue = (event.target as HTMLInputElement)?.value
     this.dataSource.filter = filterValue.trim()?.toLowerCase()
   }
 
-  // abrirABM(): void {
-  //   this.matDialog.open(AlumnosAbmComponent)
-  // }
   abrirABM():void {
    const dialog = this.matDialog.open(AlumnosAbmComponent)
 
     dialog.afterClosed().subscribe((valor) => {
       if (valor){
-        // this.dataSource.data.push(valor)
         this.dataSource.data = [
           ...this.dataSource.data,
           {
@@ -79,4 +72,12 @@ export class AlumnsListComponent implements OnInit {
       }
     })
   }
+
+  delete(ev: number) {
+
+      this.dataSource.data = this.dataSource.data.filter(
+        (alumnoActual) => alumnoActual.id !== ev,
+      );
+
+    }
 }

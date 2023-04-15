@@ -26,6 +26,9 @@ export class AlumnosAbmComponent implements OnInit {
   fechaNacimiento = new FormControl('', [Validators.required])
 
   guardar(): void{
-  this.dialogRef.close(this.alumnosForm.value)
+    if(this.alumnosForm.valid){
+      this.dialogRef.close(this.alumnosForm.value)
+    }
+
   }
 }
