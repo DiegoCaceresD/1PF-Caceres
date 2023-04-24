@@ -5,7 +5,10 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {DashboardModule} from "./dashboard/dashboard.module";
-
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatIconModule} from "@angular/material/icon";
+import { MatDialogModule } from "@angular/material/dialog";
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   declarations: [
@@ -15,7 +18,11 @@ import {DashboardModule} from "./dashboard/dashboard.module";
     BrowserModule,
     BrowserAnimationsModule,
     NgbModule,
-    DashboardModule
+    DashboardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatDialogModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,15 +7,19 @@
   class="example-container" (backdropClick)="close('backdrop')">
 
   <!-- SIDEBAR -->
+
+  <p>{{ authUser?.email }}</p>
   <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
-    <p>
-      <button mat-button (click)="openList()" class="m-3"> Gestión de Alumnos</button>
-    </p>
+    <mat-nav-list>
+      <p>
+      <button mat-button  [routerLink]="link.path" class="m-3" *ngFor="let link of links">{{ link.titulo }}</button>
+      </p>
+    </mat-nav-list>
   </mat-sidenav>
 
   <!--  PAGINAS -->
   <main>
-  <app-alumns-list *ngIf="toggle"></app-alumns-list>
+    <router-outlet></router-outlet>
   </main>
 
 </mat-sidenav-container>

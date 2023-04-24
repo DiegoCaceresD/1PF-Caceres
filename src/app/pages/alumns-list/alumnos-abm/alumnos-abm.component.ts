@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import { MatDialogRef } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, matDialogAnimations, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-alumnos-abm',
@@ -10,25 +10,40 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class AlumnosAbmComponent implements OnInit {
 
   alumnosForm: FormGroup
-  constructor( private dialogRef: MatDialogRef<AlumnosAbmComponent>) {
+  constructor(
+    private dialogRef: MatDialogRef<AlumnosAbmComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: any
+  ) {
+
+    if (data){
+      this.nombreControl.setValue(data.alumnoParaEditar.nombre),
+      this.apellidoControl.setValue(data.alumnoParaEditar.apellido),
+      this.fechaNacimientoControl.setValue(data.alumnoParaEditar.fechaNacimiento)
+    }
     this.alumnosForm = new FormGroup({
       nombre: this.nombreControl,
       apellido: this.apellidoControl,
-      fechaNacimiento: this.fechaNacimiento,
+      fechaNacimiento: this.fechaNacimientoControl,
     });
+
+    console.log(data)
   }
 
   ngOnInit(): void {
   }
 
-  nombreControl = new FormControl('', [Validators.required])
-  apellidoControl = new FormControl('', [Validators.required])
-  fechaNacimiento = new FormControl('', [Validators.required])
+  nombreControl = new FormControl('', [Validators.required,Validators.minLength(3)])
+  apellidoControl = new FormControl('', [Validators.required,Validators.minLength(3)])
+  fechaNacimientoControl = new FormControl('', [Validators.required,Validators.minLength(3)])
 
   guardar(): void{
     if(this.alumnosForm.valid){
       this.dialogRef.close(this.alumnosForm.value)
     }
 
+  }
+
+  close() {
+    this.dialogRef.close()
   }
 }

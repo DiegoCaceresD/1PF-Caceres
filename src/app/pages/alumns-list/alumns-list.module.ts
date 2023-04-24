@@ -12,9 +12,10 @@ import {PipesModule} from "../../shared/pipes/pipes.module";
 import {DirectivesModule} from "../../shared/directives/directives.module";
 import {MatButtonModule} from "@angular/material/button";
 import {AlumnosAbmComponent} from "./alumnos-abm/alumnos-abm.component";
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {ReactiveFormsModule} from "@angular/forms";
-import {A11yModule} from "@angular/cdk/a11y";
+import {ErrorsHelperModule} from "../../helpers/errors-helper/errors-helper.module";
+import {AlumnoDetalleComponent} from "./alumno-detalle/alumno-detalle.component";
+
 
 
 
@@ -23,7 +24,8 @@ import {A11yModule} from "@angular/cdk/a11y";
 @NgModule({
     declarations: [
         AlumnsListComponent,
-        AlumnosAbmComponent
+        AlumnosAbmComponent,
+        AlumnoDetalleComponent
     ],
     exports: [
         AlumnsListComponent
@@ -40,9 +42,8 @@ import {A11yModule} from "@angular/cdk/a11y";
     PipesModule,
     DirectivesModule,
     MatButtonModule,
-    MatDialogModule,
     ReactiveFormsModule,
-    A11yModule
+    ErrorsHelperModule
   ]
 })
 export class AlumnsListModule { }

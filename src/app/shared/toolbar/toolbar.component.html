@@ -1,9 +1,18 @@
 <mat-toolbar color="primary" class="toolbar">
-  <span class="example-spacer"></span>
+  <div>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="menu()">
     <mat-icon
     >menu</mat-icon>
   </button>
   <span>Diego Caceres</span>
+  </div>
+
+  <div>
+  <span>{{authUserObs$ | async }}</span>
+  <button mat-icon-button (click)="openLogin()">
+    <mat-icon matTooltip="Iniciar Sesión">person</mat-icon>
+  </button>
+  </div>
+
 </mat-toolbar>
 

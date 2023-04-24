@@ -5,6 +5,8 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {ToolbarModule} from "../shared/toolbar/toolbar.module";
 import {MatButtonModule} from "@angular/material/button";
 import {AlumnsListModule} from "../pages/alumns-list/alumns-list.module";
+import {RouterModule} from "@angular/router";
+import {MatListModule} from "@angular/material/list";
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import {AlumnsListModule} from "../pages/alumns-list/alumns-list.module";
     MatSidenavModule,
     ToolbarModule,
     MatButtonModule,
-    AlumnsListModule
+    AlumnsListModule,
+    RouterModule,
+    MatListModule
   ],
   exports:[
     DashboardComponent

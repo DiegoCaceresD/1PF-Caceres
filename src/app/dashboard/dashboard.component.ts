@@ -1,5 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSidenav} from "@angular/material/sidenav";
+import {AuthService} from "../services/auth.service";
+import {iUsuario} from "../interfaces/iUsuario";
+import {NavItem} from "../class/NavItem";
 
 @Component({
   selector: 'app-dashboard',
@@ -9,8 +12,13 @@ import {MatSidenav} from "@angular/material/sidenav";
 export class DashboardComponent implements OnInit {
 
   toggle: Boolean = false;
+  authUser: iUsuario | null = null;
+  links = NavItem.links;
 
-  constructor() { }
+  constructor(private authService: AuthService) {
+    this.authService.obtenerUsuarioAutenticado()
+      .subscribe((usuario) => this.authUser = usuario );
+  }
 
   ngOnInit(): void {
   }

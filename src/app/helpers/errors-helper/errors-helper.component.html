@@ -1,0 +1,19 @@
+<div *ngFor="let error of formErrors | keyvalue">
+  <ng-container [ngSwitch]="error.key">
+    <small *ngSwitchCase="'required'" class="text-danger">
+      Este campo es requerido
+    </small>
+    <small *ngSwitchCase="'email'" class="text-danger">
+      Debe ingresar un Email correcto
+    </small>
+    <small *ngSwitchCase="'minlength'"class="text-danger">
+      Cantidad de caracteres inválida
+    </small>
+    <small *ngSwitchCase="'maxlength'"class="text-danger">
+      Cantidad de caracteres inválida
+    </small>
+    <small *ngSwitchDefault class="text-white">
+      Error desconocido
+    </small>
+  </ng-container>
+</div>
