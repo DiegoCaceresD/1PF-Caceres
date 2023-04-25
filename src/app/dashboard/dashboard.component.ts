@@ -12,12 +12,9 @@ import {NavItem} from "../class/NavItem";
 export class DashboardComponent implements OnInit {
 
   toggle: Boolean = false;
-  authUser: iUsuario | null = null;
   links = NavItem.links;
 
-  constructor(private authService: AuthService) {
-    this.authService.obtenerUsuarioAutenticado()
-      .subscribe((usuario) => this.authUser = usuario );
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -30,9 +27,5 @@ export class DashboardComponent implements OnInit {
   close(reason: string) {
     this.reason = reason;
     this.sidenav?.close();
-  }
-
-  openList() {
-    this.toggle = !this.toggle;
   }
 }

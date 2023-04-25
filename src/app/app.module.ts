@@ -9,6 +9,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import { MatDialogModule } from "@angular/material/dialog";
 import {AppRoutingModule} from "./app-routing.module";
+import {RouterModule} from "@angular/router";
+import {AuthModule} from "./auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {AppRoutingModule} from "./app-routing.module";
     MatFormFieldModule,
     MatIconModule,
     MatDialogModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

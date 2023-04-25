@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AuthComponent } from './auth.component';
 import {RouterModule} from "@angular/router";
+import {MatCardModule} from "@angular/material/card";
 
 
 
@@ -11,7 +12,8 @@ import {RouterModule} from "@angular/router";
       AuthComponent
   ],
   imports: [
-    RouterModule
+    RouterModule,
+    MatCardModule
   ]
 
 })

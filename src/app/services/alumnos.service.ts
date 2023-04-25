@@ -42,4 +42,12 @@ export class AlumnosService {
   getListado(): Observable<Alumno[] > {
     return this.alumno$.asObservable();
   }
+
+  getComisión(): Promise<string> {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve('Comisión 41190');
+      }, 2000)
+    })
+  }
 }

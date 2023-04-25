@@ -23,8 +23,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     this.authUserObs$ = this.authService.obtenerUsuarioAutenticado()
       .pipe(
-      map((v) => v?.usuario.toUpperCase())
-    )
+        map((user) => user?.usuario.toUpperCase())
+      )
+
+
   }
 
   ngOnInit(): void {

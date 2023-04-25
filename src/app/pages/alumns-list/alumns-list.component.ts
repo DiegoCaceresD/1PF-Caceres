@@ -17,11 +17,16 @@ import {Router} from "@angular/router";
 export class AlumnsListComponent implements OnInit, OnDestroy {
 
   alumnos: Alumno[] = [];
+  camada: string;
   constructor(private matDialog: MatDialog,  private alumnosService: AlumnosService, private router: Router)
   {}
 
   ngOnInit(): void {
     this.cargarAlumnos()
+    this.alumnosService.getComisión()
+      .then((datos) => {
+        this.camada = datos
+      })
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

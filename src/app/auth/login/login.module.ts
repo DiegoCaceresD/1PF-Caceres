@@ -8,8 +8,6 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {ErrorsHelperModule} from "../../helpers/errors-helper/errors-helper.module";
 
-
-
 @NgModule({
   declarations: [
     LoginComponent
@@ -21,7 +19,7 @@ import {ErrorsHelperModule} from "../../helpers/errors-helper/errors-helper.modu
     MatInputModule,
     MatDialogModule,
     MatButtonModule,
-    ErrorsHelperModule
+    ErrorsHelperModule,
   ],
   exports: [
     LoginComponent

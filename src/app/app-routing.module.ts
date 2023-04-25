@@ -28,10 +28,10 @@ const routes: Routes = [
           }
         ]
       },
-      // {
-      //   path: 'alumnos/:id',
-      //   component: AlumnoDetalleComponent
-      // },
+      {
+        path: 'alumnos/:id',
+        component: AlumnoDetalleComponent
+      },
 
     ]
   },
