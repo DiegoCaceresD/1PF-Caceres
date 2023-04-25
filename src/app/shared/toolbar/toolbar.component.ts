@@ -6,6 +6,7 @@ import {LoginComponent} from "../../auth/login/login.component";
 import {AuthService} from "../../services/auth.service";
 import {iUsuario} from "../../interfaces/iUsuario";
 import {map, Observable, Subject, takeUntil} from "rxjs";
+import {Router} from "@angular/router";
 
 
 
@@ -19,7 +20,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   authUserObs$: Observable<any> ;
 
   destroyed$ = new Subject<void>()
-  constructor(private matDialog: MatDialog, private authService: AuthService) {
+  constructor(private matDialog: MatDialog, private authService: AuthService, private router:Router) {
 
     this.authUserObs$ = this.authService.obtenerUsuarioAutenticado()
       .pipe(
@@ -44,6 +45,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   }
 
   openLogin():void {
-
+    this.router.navigate(['auth', 'login'])
   }
 }
