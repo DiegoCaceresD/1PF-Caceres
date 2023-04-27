@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, map, Observable, Subject} from "rxjs";
-import {iUsuario} from "../interfaces/iUsuario";
+import {iUsuario} from "../../core/interfaces/iUsuario";
 import {Router} from "@angular/router";
 import {FormGroup} from "@angular/forms";
 
@@ -19,6 +19,6 @@ export class AuthService {
 
   login(formValue: iUsuario): void {
     this.usuarioAutenticado$.next(formValue)
-    this.router.navigate(['dashboard'])
+    this.router.navigate([''])
   }
 }

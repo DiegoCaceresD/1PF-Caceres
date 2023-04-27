@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Alumno} from "../class/Alumno";
+import {Alumno} from "../../../core/class/Alumno";
 import {BehaviorSubject, map, observable, Observable, Subject} from "rxjs";
 
 @Injectable({
@@ -39,7 +39,7 @@ export class AlumnosService {
       )
   }
 
-  getListado(): Observable<Alumno[] > {
+  getListaAlumnos(): Observable<Alumno[] > {
     return this.alumno$.asObservable();
   }
 

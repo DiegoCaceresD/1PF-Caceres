@@ -8,13 +8,13 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {PipesModule} from "../../shared/pipes/pipes.module";
-import {DirectivesModule} from "../../shared/directives/directives.module";
 import {MatButtonModule} from "@angular/material/button";
 import {AlumnosAbmComponent} from "./alumnos-abm/alumnos-abm.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ErrorsHelperModule} from "../../helpers/errors-helper/errors-helper.module";
 import {AlumnoDetalleComponent} from "./alumno-detalle/alumno-detalle.component";
+import {SharedModule} from "../../shared/shared.module";
+import {MatCardModule} from "@angular/material/card";
 
 
 
@@ -30,20 +30,20 @@ import {AlumnoDetalleComponent} from "./alumno-detalle/alumno-detalle.component"
     exports: [
         AlumnsListComponent
     ],
-  imports: [
-    CommonModule,
-    MatListModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatInputModule,
-    PipesModule,
-    DirectivesModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    ErrorsHelperModule
-  ]
+    imports: [
+        CommonModule,
+        MatListModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatFormFieldModule,
+        MatInputModule,
+        SharedModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        ErrorsHelperModule,
+        MatCardModule
+    ]
 })
 export class AlumnsListModule { }

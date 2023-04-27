@@ -1,10 +1,10 @@
 import {Component, EventEmitter, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
-import {Alumno} from "../../class/Alumno";
+import {Alumno} from "../../core/class/Alumno";
 import {AlumnosAbmComponent} from "./alumnos-abm/alumnos-abm.component";
 import {MatDialog} from "@angular/material/dialog";
-import {AlumnosService} from "../../services/alumnos.service";
+import {AlumnosService} from "./services/alumnos.service";
 import {Router} from "@angular/router";
 
 
@@ -38,7 +38,7 @@ export class AlumnsListComponent implements OnInit, OnDestroy {
 
 
   cargarAlumnos(): Alumno[] {
-    this.alumnosService.getListado().subscribe(
+    this.alumnosService.getListaAlumnos().subscribe(
       (alumnos) =>{
       this.alumnos = alumnos;
     })
@@ -88,7 +88,7 @@ export class AlumnsListComponent implements OnInit, OnDestroy {
     })
   }
 
-  deleteAlumno(ev: number) {
+  eliminarAlumno(ev: number) {
 
       this.dataSource.data = this.dataSource.data.filter(
         (alumnoActual) => alumnoActual.id !== ev,

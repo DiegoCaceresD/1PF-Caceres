@@ -11,6 +11,8 @@ import { MatDialogModule } from "@angular/material/dialog";
 import {AppRoutingModule} from "./app-routing.module";
 import {RouterModule} from "@angular/router";
 import {AuthModule} from "./auth/auth.module";
+import {MatTableModule} from "@angular/material/table";
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import {AuthModule} from "./auth/auth.module";
     MatDialogModule,
     AppRoutingModule,
     RouterModule,
-    AuthModule
+    AuthModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,8 +3,8 @@ import {MatSidenav} from "@angular/material/sidenav";
 import {AlumnosAbmComponent} from "../../pages/alumns-list/alumnos-abm/alumnos-abm.component";
 import {MatDialog} from "@angular/material/dialog";
 import {LoginComponent} from "../../auth/login/login.component";
-import {AuthService} from "../../services/auth.service";
-import {iUsuario} from "../../interfaces/iUsuario";
+import {AuthService} from "../../auth/services/auth.service";
+import {iUsuario} from "../../core/interfaces/iUsuario";
 import {map, Observable, Subject, takeUntil} from "rxjs";
 import {Router} from "@angular/router";
 

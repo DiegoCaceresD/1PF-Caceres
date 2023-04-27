@@ -6,8 +6,12 @@ export class NavItem implements iNavItem {
 
   static links: iNavItem[] = [
     {
-      path: 'dashboard/alumnos',
+      path: 'alumnos',
       titulo: 'Alumnos'
+    },
+    {
+      path:'cursos',
+      titulo: 'Cursos'
     }
   ]
 }
