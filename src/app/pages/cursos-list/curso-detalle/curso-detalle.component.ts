@@ -19,10 +19,11 @@ export class CursoDetalleComponent implements OnInit {
           this.curso = c;
         }
       )
-    console.log(this.curso)
+    console.log(this.curso?.id)
   }
 
   ngOnInit(): void {
+
   }
 
 }

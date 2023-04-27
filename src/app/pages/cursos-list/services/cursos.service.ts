@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, map, Observable} from "rxjs";
+import {BehaviorSubject, forkJoin, map, Observable, switchMap} from "rxjs";
 import {iCurso} from "../../../core/interfaces/iCurso";
+import {AlumnosService} from "../../alumns-list/services/alumnos.service";
 
 
 @Injectable({
@@ -21,7 +22,7 @@ export class CursosService {
     {nombre: "Administración de Sistemas Linux", id: 1010}
   ])
 
-  constructor() { }
+  constructor(private alumnosService: AlumnosService) { }
 
   getListaCursos(): Observable<iCurso[]> {
     return this.cursos$.asObservable();
@@ -32,5 +33,14 @@ export class CursosService {
       .pipe(
         map((curso)=>curso.find((c) => c.id === idCurso))
       )
+  }
+
+  getCursosByAlumnoID(alumnoID?: number) {
+      this.alumnosService.getAlumnoById(alumnoID)
+      .subscribe((a) =>{
+        a?.cursosID.forEach((curso)=>{
+          this.getCursoById(curso).subscribe(console.log)
+        })
+      })
   }
 }
