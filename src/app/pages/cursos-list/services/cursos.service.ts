@@ -22,7 +22,7 @@ export class CursosService {
     {nombre: "Administración de Sistemas Linux", id: 1010}
   ])
 
-  constructor(private alumnosService: AlumnosService) {
+  constructor(private alumnosServices: AlumnosService) {
   }
 
   getListaCursos(): Observable<iCurso[]> {
@@ -36,14 +36,6 @@ export class CursosService {
       )
   }
 
-  getCursosByAlumnoID(alumnoID?: number) {
-    this.alumnosService.getAlumnoById(alumnoID)
-      .subscribe((a) => {
-        a?.cursosID.forEach((curso) => {
-          this.getCursoById(curso).subscribe(console.log)
-        })
-      })
-  }
 
   crearCurso(data: CrearCursoData): Observable<iCurso[]> {
     this.cursos$
@@ -102,4 +94,34 @@ export class CursosService {
       )
     return this.cursos$.asObservable()
   }
+
+
+  // getCursosByAlumnoID(alumnoID?: number): Observable<iCurso[]>{
+  //   this.alumnosServices.getAlumnoById(alumnoID)
+  //     .subscribe({
+  //       next:(alumno)=>{
+  //         this.cursos$
+  //           .subscribe()
+  //       }
+  //     })
+  //
+  //
+  //   this.alumnosServices.getAlumnoById(alumnoID)
+  //     .subscribe(
+  //       (a) => {
+  //         a?.cursosID.forEach((curso) => {
+  //           this.getCursoById(curso)
+  //             .pipe(
+  //               take(1)
+  //             )
+  //             .subscribe({
+  //                 next: (c) => {
+  //                   return c;
+  //                 }
+  //               }
+  //             )
+  //         })
+  //       })
+  //
+  // }
 }

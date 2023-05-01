@@ -4,6 +4,7 @@ import {AlumnosService} from "../services/alumnos.service";
 import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
 import {Alumno} from "../../../core/class/Alumno";
 import {CursosService} from "../../cursos-list/services/cursos.service";
+import {iCurso} from "../../../core/interfaces/iCurso";
 
 
 @Component({
@@ -14,14 +15,15 @@ import {CursosService} from "../../cursos-list/services/cursos.service";
 export class AlumnoDetalleComponent implements OnInit {
 
   alumno: Alumno | undefined;
-  constructor(private activatedRoute: ActivatedRoute, alumnosService: AlumnosService, cursosService: CursosService) {
+  cursos: iCurso[];
+  constructor(private activatedRoute: ActivatedRoute, alumnosService: AlumnosService) {
 
      alumnosService.getAlumnoById(parseInt(activatedRoute.snapshot.params['id']))
       .subscribe((a) => {
         this.alumno = a;
       })
 
-    cursosService.getCursosByAlumnoID(this.alumno?.id)
+
   }
 
   ngOnInit(): void {

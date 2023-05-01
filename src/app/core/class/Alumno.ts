@@ -5,5 +5,5 @@ export class Alumno implements IPersona{
   nombre: string;
   apellido:string;
   fechaNacimiento: Date;
-  cursosID: number[];
+  cursosID?: number[];
 }

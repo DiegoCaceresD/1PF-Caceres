@@ -4,3 +4,9 @@ export interface IPersona {
   apellido: string,
   fechaNacimiento: Date
 }
+
+export interface CrearAlumno{
+  nombre: string;
+  apellido:string;
+  fechaNacimiento: Date;
+}

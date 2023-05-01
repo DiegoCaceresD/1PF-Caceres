@@ -6,6 +6,7 @@ import {AlumnosAbmComponent} from "./alumnos-abm/alumnos-abm.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AlumnosService} from "./services/alumnos.service";
 import {Router} from "@angular/router";
+import {Subscription} from "rxjs";
 
 
 
@@ -17,37 +18,30 @@ import {Router} from "@angular/router";
 export class AlumnsListComponent implements OnInit, OnDestroy {
 
   alumnos: Alumno[] = [];
-  camada: string;
+  alumnosSubscription: Subscription;
   constructor(private matDialog: MatDialog,  private alumnosService: AlumnosService, private router: Router)
   {}
 
   ngOnInit(): void {
-    this.cargarAlumnos()
-    this.alumnosService.getComisión()
-      .then((datos) => {
-        this.camada = datos
-      })
+    this.alumnosSubscription =this.alumnosService.getListaAlumnos()
+      .subscribe({
+        next: (cursos) =>{
+          this.dataSource.data = cursos
+        }
+        }
+      )
+
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
   ngOnDestroy(): void{
-
+    this.alumnosSubscription.unsubscribe()
   };
   @ViewChild(MatPaginator) paginator: MatPaginator ;
 
-
-  cargarAlumnos(): Alumno[] {
-    this.alumnosService.getListaAlumnos().subscribe(
-      (alumnos) =>{
-      this.alumnos = alumnos;
-    })
-      return this.alumnos
-  }
-
-
   displayedColumns: string[] = ['id', 'nombreCompleto'  , 'fechaNacimiento','ver_detalle', 'delete', 'edit'];
-  dataSource = new MatTableDataSource <Alumno> (this.cargarAlumnos());
+  dataSource = new MatTableDataSource;
 
 
   aplicarFiltro(event: KeyboardEvent) {
@@ -60,13 +54,7 @@ export class AlumnsListComponent implements OnInit, OnDestroy {
 
     dialog.afterClosed().subscribe((valor) => {
       if (valor){
-        this.dataSource.data = [
-          ...this.dataSource.data,
-          {
-            ...valor,
-          id: this.dataSource.data.length +1
-          }
-        ]
+        this.alumnosService.crearAlumno(valor)
       }
     })
   }
@@ -81,19 +69,15 @@ export class AlumnsListComponent implements OnInit, OnDestroy {
     dialog.afterClosed()
       .subscribe((alumnoEditado) => {
       if (alumnoEditado){
-        this.dataSource.data = this.dataSource.data.map(
-          (alumnoActual) => alumnoActual.id === alumnoParaEditar.id ? ({...alumnoActual, ...alumnoEditado}) : alumnoActual,
-        )
+
+        this.alumnosService.editarAlumno(alumnoParaEditar.id, alumnoEditado)
       }
     })
   }
 
   eliminarAlumno(ev: number) {
 
-      this.dataSource.data = this.dataSource.data.filter(
-        (alumnoActual) => alumnoActual.id !== ev,
-      );
-
+     this.alumnosService.eliminarAlumno(ev)
     }
 
   verDetalle(alumnoId: number) {
