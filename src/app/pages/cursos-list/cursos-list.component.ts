@@ -4,7 +4,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {CursosService} from "./services/cursos.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {CursosAbmComponent} from "./cursos-abm/cursos-abm.component";
-import {map} from "rxjs";
+import {map, Subscription} from "rxjs";
 import {Router} from "@angular/router";
 
 
@@ -17,48 +17,41 @@ export class CursosListComponent implements OnInit, OnDestroy {
 
 
   cursos: iCurso[] = []
+  cursosSuscription: Subscription;
+  dataSource = new MatTableDataSource<iCurso>();
 
-  constructor(private matDialog: MatDialog, private cursosService: CursosService,private router: Router) {
+  constructor(private matDialog: MatDialog, private cursosService: CursosService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.cargarCursos()
+    this.cursosSuscription = this.cursosService.getListaCursos()
+      .subscribe({
+          next: (cursos) => {
+            this.dataSource.data = cursos
+          }
+        }
+      )
   }
 
   ngOnDestroy(): void {
+    this.cursosSuscription.unsubscribe()
   }
 
-  displayedColumns: string[] = ['id', 'nombre','ver_detalle', 'delete', 'edit']
-  dataSource = new MatTableDataSource<iCurso>(this.cargarCursos());
+
+  displayedColumns: string[] = ['id', 'nombre', 'ver_detalle', 'delete', 'edit']
 
   aplicarFiltro(event: KeyboardEvent) {
     const filterValue = (event.target as HTMLInputElement)?.value
     this.dataSource.filter = filterValue.trim()?.toLowerCase()
   }
 
-  cargarCursos(): iCurso[] {
-    this.cursosService.getListaCursos()
-      .subscribe(
-        (cursos) => {
-          this.cursos = cursos
-        }
-      )
-    return this.cursos
-  }
 
   crearCurso(): void {
     const dialog = this.matDialog.open(CursosAbmComponent)
 
     dialog.afterClosed().subscribe((valor) => {
       if (valor) {
-        this.dataSource.data = [
-          ...this.dataSource.data,
-          {
-            ...valor,
-            id: this.dataSource.data[this.dataSource.data.length - 1].id + 1
-          }
-        ]
-
+        this.cursosService.crearCurso(valor);
       }
     })
 
@@ -69,27 +62,25 @@ export class CursosListComponent implements OnInit, OnDestroy {
       data: {
         cursoParaEditar
       }
-    });
+    }
+    );
+    console.log(cursoParaEditar)
 
     dialog.afterClosed().subscribe(
       (cursoEditado) => {
-        if (cursoEditado) {
-          this.dataSource.data = this.dataSource.data.map(
-            (cursoActual) => cursoActual.id === cursoParaEditar.id ? ({...cursoActual, ...cursoEditado}) : cursoActual,
-          )
+        if (cursoEditado){
+        this.cursosService.editarCurso(cursoParaEditar.id, cursoEditado)
+
         }
       }
     )
   }
 
   eliminarCurso(ev: number) {
-    console.log(ev)
-    this.dataSource.data = this.dataSource.data.filter(
-      (cursoActual) => cursoActual.id !== ev,
-    )
+   this.cursosService.eliminarCurso(ev);
   }
 
-  verDetalle(cursoId: number){
+  verDetalle(cursoId: number) {
     this.router.navigate(['dashboard', 'cursos', cursoId])
   }
 
