@@ -14,10 +14,11 @@ export class DashboardComponent implements OnInit {
   toggle: Boolean = false;
   links = NavItem.links;
 
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
+    this.authService.verificarToken()
   }
 
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;

@@ -12,6 +12,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import {RouterModule} from "@angular/router";
 import {AuthModule} from "./auth/auth.module";
 import {MatTableModule} from "@angular/material/table";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {MatTableModule} from "@angular/material/table";
     RouterModule,
     AuthModule,
     MatTableModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

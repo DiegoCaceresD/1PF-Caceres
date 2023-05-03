@@ -100,11 +100,20 @@ export class CursosService {
   //   this.alumnosServices.getAlumnoById(alumnoID)
   //     .subscribe({
   //       next:(alumno)=>{
-  //         this.cursos$
-  //           .subscribe()
+  //         const cursos = alumno?.cursosID?.map((cursoID) =>{
+  //           return this.getCursoById(cursoID)
+  //         })
+  //         this.cursos$.next(cursos)
   //       }
   //     })
-  //
+
+
+
+
+
+
+
+
   //
   //   this.alumnosServices.getAlumnoById(alumnoID)
   //     .subscribe(
@@ -122,6 +131,5 @@ export class CursosService {
   //             )
   //         })
   //       })
-  //
   // }
 }

@@ -23,14 +23,11 @@ export class AlumnsListComponent implements OnInit, OnDestroy {
   {}
 
   ngOnInit(): void {
-    this.alumnosSubscription =this.alumnosService.getListaAlumnos()
-      .subscribe({
-        next: (cursos) =>{
-          this.dataSource.data = cursos
-        }
-        }
-      )
-
+   this.alumnosSubscription = this.alumnosService.getListaAlumnos().subscribe({
+      next: (cursos) =>{
+        this.dataSource.data = cursos
+      }
+    })
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

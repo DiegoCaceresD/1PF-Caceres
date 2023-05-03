@@ -3,6 +3,8 @@ import {BehaviorSubject, map, Observable, Subject} from "rxjs";
 import {iUsuario} from "../../core/interfaces/iUsuario";
 import {Router} from "@angular/router";
 import {FormGroup} from "@angular/forms";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +13,53 @@ export class AuthService {
 
   private usuarioAutenticado$ = new BehaviorSubject<iUsuario | null>(null);
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private httpClient: HttpClient) { }
 
   obtenerUsuarioAutenticado(): Observable<iUsuario | null>{
     return this.usuarioAutenticado$.asObservable()
   }
 
   login(formValue: iUsuario): void {
-    this.usuarioAutenticado$.next(formValue)
-    this.router.navigate([''])
+    this.httpClient.get<iUsuario[]>(
+      `${environment.baseUrl}/usuarios`,
+      {
+        params: {
+          ...formValue
+        },
+      }
+    ).subscribe({
+      next:(usuarios)=>{
+        const usuarioAutenticado = usuarios[0];
+
+        if (usuarioAutenticado){
+          localStorage.setItem('token',usuarioAutenticado.token)
+          this.usuarioAutenticado$.next(usuarioAutenticado)
+          this.router.navigate([''])
+        }
+        else {
+          console.log("credenciales incorrectas")
+        }
+      }
+    })
   }
+
+  verificarToken(): void {
+    const token = localStorage.getItem('token')
+
+
+
+      this.httpClient.get<iUsuario[]>(`${environment.baseUrl}/usuarios?token=${token}`)
+        .subscribe({
+          next:(usuarios) =>{
+            const usuarioAutenticado = usuarios[0];
+            if (usuarioAutenticado){
+              localStorage.setItem('token', usuarioAutenticado.token)
+              this.usuarioAutenticado$.next(usuarioAutenticado)
+            }
+          }
+        })
+  }
+
+
+
 }
