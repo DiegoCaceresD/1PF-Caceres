@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { AuthComponent } from './auth.component';
-import {RouterModule} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 import {MatCardModule} from "@angular/material/card";
-
-
-
+import {LoginComponent} from "./login/login.component";
+import {AuthRoutingModule} from "./auth-routing.module";
 
 
 @NgModule({
@@ -12,9 +11,8 @@ import {MatCardModule} from "@angular/material/card";
       AuthComponent
   ],
   imports: [
-    RouterModule,
-    MatCardModule
+    MatCardModule,
+    AuthRoutingModule
   ]
-
 })
 export class AuthModule { }

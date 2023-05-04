@@ -15,10 +15,8 @@ import {ErrorsHelperModule} from "../../helpers/errors-helper/errors-helper.modu
 import {AlumnoDetalleComponent} from "./alumno-detalle/alumno-detalle.component";
 import {SharedModule} from "../../shared/shared.module";
 import {MatCardModule} from "@angular/material/card";
-
-
-
-
+import {RouterModule, Routes} from "@angular/router";
+import {AlumnosRoutingModule} from "./alumnos-routing.module";
 
 
 @NgModule({
@@ -43,7 +41,8 @@ import {MatCardModule} from "@angular/material/card";
         MatButtonModule,
         ReactiveFormsModule,
         ErrorsHelperModule,
-        MatCardModule
+        MatCardModule,
+        AlumnosRoutingModule
     ]
 })
 export class AlumnsListModule { }

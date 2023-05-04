@@ -13,46 +13,14 @@ const routes: Routes = [
     //http://localhost:4200/dashboard
     path: 'dashboard',
     component: DashboardComponent,
-    //http://localhost:4200/dashboard/alumnos
-    children: [
-      {
-        path: 'alumnos',
-        children: [
-          {
-            path: '',
-            component: AlumnsListComponent,
-          },
-          {
-            //http://localhost:4200/dashboard/alumnos/:id
-            path: ':id',
-            component: AlumnoDetalleComponent
-          }
-        ]
-      },
-      {
-        path:'cursos',
-        children:[
-          {
-            path: '',
-            component: CursosListComponent
-          },
-          {
-            path: ':id',
-            component: CursoDetalleComponent
-          }
-        ]
-      }
-    ]
+    loadChildren: () => import('./dashboard/dashboard.module').then((m)=>m.DashboardModule)
   },
   {
     // http://localhost:4200/
     path: 'auth',
     component: AuthComponent,
-    children: [{
-      path: 'login',
-      component: LoginComponent,
-    }]
-  },
+    loadChildren: () => import('./auth/auth.module').then((m)=>m.AuthModule)
+    },
   {
     path: '**',
     component: DashboardComponent,

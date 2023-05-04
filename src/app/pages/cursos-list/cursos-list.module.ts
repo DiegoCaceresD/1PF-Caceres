@@ -15,6 +15,7 @@ import {ErrorsHelperModule} from "../../helpers/errors-helper/errors-helper.modu
 import { CursosAbmComponent } from './cursos-abm/cursos-abm.component';
 import { CursoDetalleComponent } from './curso-detalle/curso-detalle.component';
 import {MatCardModule} from "@angular/material/card";
+import {CursosRoutingModule} from "./cursos-routing.module";
 
 
 
@@ -38,7 +39,8 @@ import {MatCardModule} from "@angular/material/card";
     MatButtonModule,
     ReactiveFormsModule,
     ErrorsHelperModule,
-    MatCardModule
+    MatCardModule,
+    CursosRoutingModule
   ],
   exports: [
     CursosListComponent
