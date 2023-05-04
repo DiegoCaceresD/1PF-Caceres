@@ -6,7 +6,7 @@ import {AuthService} from "../services/auth.service";
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class LoginGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {
   }
   canActivate(
@@ -15,8 +15,8 @@ export class AuthGuard implements CanActivate {
 
     return this.authService.verificarToken().pipe(
       map((usuarioAutenticado) =>{
-        if (!usuarioAutenticado){
-          return this.router.createUrlTree(['auth','login'])
+        if (usuarioAutenticado){
+          return this.router.createUrlTree(['dashboard'])
         }else {
           return true;
         }

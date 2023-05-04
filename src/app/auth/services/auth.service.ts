@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, map, Observable, Subject} from "rxjs";
 import {iUsuario} from "../../core/interfaces/iUsuario";
 import {Router} from "@angular/router";
@@ -13,9 +13,10 @@ export class AuthService {
 
   private usuarioAutenticado$ = new BehaviorSubject<iUsuario | null>(null);
 
-  constructor(private router: Router, private httpClient: HttpClient) { }
+  constructor(private router: Router, private httpClient: HttpClient) {
+  }
 
-  obtenerUsuarioAutenticado(): Observable<iUsuario | null>{
+  obtenerUsuarioAutenticado(): Observable<iUsuario | null> {
     return this.usuarioAutenticado$.asObservable()
   }
 
@@ -28,38 +29,34 @@ export class AuthService {
         },
       }
     ).subscribe({
-      next:(usuarios)=>{
+      next: (usuarios) => {
         const usuarioAutenticado = usuarios[0];
 
-        if (usuarioAutenticado){
-          localStorage.setItem('token',usuarioAutenticado.token)
+        if (usuarioAutenticado) {
+          localStorage.setItem('token', usuarioAutenticado.token)
           this.usuarioAutenticado$.next(usuarioAutenticado)
           this.router.navigate([''])
-        }
-        else {
+        } else {
           console.log("credenciales incorrectas")
         }
       }
     })
   }
 
-  verificarToken(): void {
+  verificarToken(): Observable<boolean> {
     const token = localStorage.getItem('token')
-
-
-
-      this.httpClient.get<iUsuario[]>(`${environment.baseUrl}/usuarios?token=${token}`)
-        .subscribe({
-          next:(usuarios) =>{
-            const usuarioAutenticado = usuarios[0];
-            if (usuarioAutenticado){
-              localStorage.setItem('token', usuarioAutenticado.token)
-              this.usuarioAutenticado$.next(usuarioAutenticado)
-            }
+    return this.httpClient.get<iUsuario[]>(`${environment.baseUrl}/usuarios?token=${token}`)
+      .pipe(
+        map((usuarios) => {
+          const usuarioAutenticado = usuarios[0];
+          if (usuarioAutenticado) {
+            localStorage.setItem('token', usuarioAutenticado.token)
+            this.usuarioAutenticado$.next(usuarioAutenticado)
           }
+          return !!usuarioAutenticado;
         })
+      )
   }
-
 
 
 }

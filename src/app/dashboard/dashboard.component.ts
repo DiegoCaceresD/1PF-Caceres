@@ -18,7 +18,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.verificarToken()
   }
 
   @ViewChild('sidenav') sidenav: MatSidenav | undefined;
