@@ -51,7 +51,7 @@ export class AlumnsListComponent implements OnInit, OnDestroy {
 
     dialog.afterClosed().subscribe((valor) => {
       if (valor){
-        this.alumnosService.crearAlumno(valor)
+        this.alumnosService.crearAlumno(valor).subscribe()
       }
     })
   }
@@ -67,14 +67,14 @@ export class AlumnsListComponent implements OnInit, OnDestroy {
       .subscribe((alumnoEditado) => {
       if (alumnoEditado){
 
-        this.alumnosService.editarAlumno(alumnoParaEditar.id, alumnoEditado)
+        this.alumnosService.editarAlumno(alumnoParaEditar.id, alumnoEditado).subscribe()
       }
     })
   }
 
   eliminarAlumno(ev: number) {
 
-     this.alumnosService.eliminarAlumno(ev)
+     this.alumnosService.eliminarAlumno(ev).subscribe()
     }
 
   verDetalle(alumnoId: number) {

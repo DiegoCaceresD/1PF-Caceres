@@ -24,9 +24,13 @@ export class CursosListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+   this.cargarCursos()
+  }
+  cargarCursos(){
     this.cursosSuscription = this.cursosService.getListaCursos()
       .subscribe({
           next: (cursos) => {
+            console.log(cursos)
             this.dataSource.data = cursos
           }
         }
@@ -51,9 +55,11 @@ export class CursosListComponent implements OnInit, OnDestroy {
 
     dialog.afterClosed().subscribe((valor) => {
       if (valor) {
-        this.cursosService.crearCurso(valor);
+        this.cursosService.crearCurso(valor).subscribe(curso => this.cursos.push(curso));
       }
     })
+
+    this.cargarCursos()
 
   }
 
@@ -64,12 +70,11 @@ export class CursosListComponent implements OnInit, OnDestroy {
       }
     }
     );
-    console.log(cursoParaEditar)
 
     dialog.afterClosed().subscribe(
       (cursoEditado) => {
         if (cursoEditado){
-        this.cursosService.editarCurso(cursoParaEditar.id, cursoEditado)
+        this.cursosService.editarCurso(cursoParaEditar.id, cursoEditado).subscribe()
 
         }
       }
@@ -77,7 +82,7 @@ export class CursosListComponent implements OnInit, OnDestroy {
   }
 
   eliminarCurso(ev: number) {
-   this.cursosService.eliminarCurso(ev);
+   this.cursosService.eliminarCurso(ev).subscribe()
   }
 
   verDetalle(cursoId: number) {

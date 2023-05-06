@@ -26,7 +26,6 @@ export class AlumnosAbmComponent implements OnInit {
       fechaNacimiento: this.fechaNacimientoControl,
     });
 
-    console.log(data)
   }
 
   ngOnInit(): void {

@@ -23,14 +23,14 @@
   ],
   "alumnos": [
     {
-      "id": 1,
-      "nombre": "Juan",
+      "nombre": "Juan editado",
       "apellido": "Pérez",
-      "fechaNacimiento":"2023-05-03T23:27:33.765Z",
+      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
+      "id": 1,
       "cursoID": [
         1001,
         1004,
-        1005
+        1008
       ]
     },
     {
@@ -180,7 +180,7 @@
       "id": 15,
       "nombre": "Ricardo",
       "apellido": "Vargas",
-      "fechaNacimiento":"2023-05-03T23:27:33.765Z",
+      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
       "cursoID": [
         1001,
         1004,
@@ -241,6 +241,48 @@
         1002,
         1005
       ]
+    }
+  ],
+  "cursos": [
+    {
+      "nombre": "Introducción a la Programación",
+      "id": 1001
+    },
+    {
+      "nombre": "Desarrollo Web con HTML, CSS y JavaScript",
+      "id": 1002
+    },
+    {
+      "nombre": "Bases de Datos con SQL",
+      "id": 1003
+    },
+    {
+      "nombre": "Introducción a la Inteligencia Artificial",
+      "id": 1004
+    },
+    {
+      "nombre": "Desarrollo de Aplicaciones Móviles",
+      "id": 1005
+    },
+    {
+      "nombre": "Seguridad Informática",
+      "id": 1006
+    },
+    {
+      "nombre": "Redes de Computadoras",
+      "id": 1007
+    },
+    {
+      "nombre": "Desarrollo de Videojuegos",
+      "id": 1008
+    },
+    {
+      "nombre": "Análisis de Datos con Python",
+      "id": 1009
+    },
+    {
+      "nombre": "Administración de Sistemas Linux",
+      "id": 1010
     }
   ]
 }

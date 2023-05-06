@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CursosService} from "../services/cursos.service";
 import {iCurso} from "../../../core/interfaces/iCurso";
-import {nextMonthDisabled} from "@ng-bootstrap/ng-bootstrap/datepicker/datepicker-tools";
+
 
 @Component({
   selector: 'app-curso-detalle',
@@ -19,7 +19,6 @@ export class CursoDetalleComponent implements OnInit {
           this.curso = c;
         }
       )
-    console.log(this.curso?.id)
   }
 
   ngOnInit(): void {
