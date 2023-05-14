@@ -2,8 +2,8 @@
   "usuarios": [
     {
       "id": 1,
-      "nombre": "Diego",
-      "apellido": "Caceres",
+      "name": "Diego",
+      "lastName": "Caceres",
       "usuario": "diego123",
       "email": "dcacares2097@gmail.com",
       "password": "123456",
@@ -12,8 +12,8 @@
     },
     {
       "id": 2,
-      "nombre": "admin1",
-      "apellido": "admin",
+      "name": "admin1",
+      "lastName": "admin",
       "usuario": "admin",
       "email": "admin@mail.com",
       "password": "123456",
@@ -21,268 +21,139 @@
       "role": "admin"
     }
   ],
-  "alumnos": [
-    {
-      "nombre": "Juan editado",
-      "apellido": "Pérez",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "id": 1,
-      "cursoID": [
-        1001,
-        1004,
-        1008
-      ]
-    },
+  "students": [
     {
       "id": 2,
-      "nombre": "María",
-      "apellido": "González",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1001,
-        1004,
-        1008
-      ]
+      "name": "María",
+      "lastName": "González",
+      "birthDate": "2023-05-03T23:27:33.765Z"
     },
     {
       "id": 3,
-      "nombre": "Pedro",
-      "apellido": "López",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1001,
-        1007,
-        1005
-      ]
+      "name": "Pedro",
+      "lastName": "López",
+      "birthDate": "2023-05-03T23:27:33.765Z"
     },
     {
       "id": 4,
-      "nombre": "Luisa",
-      "apellido": "Hernández",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1008,
-        1004,
-        1005
-      ]
+      "name": "Luisa",
+      "lastName": "Hernández",
+      "birthDate": "2023-05-03T23:27:33.765Z"
     },
     {
       "id": 5,
-      "nombre": "Jorge",
-      "apellido": "García",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1001,
-        1002,
-        1008
-      ]
+      "name": "Jorge",
+      "lastName": "García",
+      "birthDate": "2023-05-03T23:27:33.765Z"
     },
     {
       "id": 6,
-      "nombre": "Ana",
-      "apellido": "Martínez",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1009,
-        1004,
-        1006
-      ]
+      "name": "Ana",
+      "lastName": "Martínez",
+      "birthDate": "2023-05-03T23:27:33.765Z"
     },
     {
       "id": 7,
-      "nombre": "Miguel",
-      "apellido": "Sánchez",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1007,
-        1004,
-        1005
-      ]
+      "name": "Miguel",
+      "lastName": "Sánchez",
+      "birthDate": "2023-05-03T23:27:33.765Z"
     },
     {
       "id": 8,
-      "nombre": "Sofía",
-      "apellido": "Ramírez",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1001,
-        1004,
-        1006
-      ]
+      "name": "Sofía",
+      "lastName": "Ramírez",
+      "birthDate": "2023-05-03T23:27:33.765Z"
     },
     {
       "id": 9,
-      "nombre": "Pablo",
-      "apellido": "Gómez",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1004,
-        1008,
-        1005
-      ]
+      "name": "Pablo",
+      "lastName": "Gómez",
+      "birthDate": "2023-05-03T23:27:33.765Z"
     },
     {
       "id": 10,
-      "nombre": "Adriana",
-      "apellido": "Castillo",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1001,
-        1002,
-        1005
-      ]
-    },
-    {
-      "id": 11,
-      "nombre": "Carlos",
-      "apellido": "Díaz",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1001,
-        1004,
-        1006
-      ]
-    },
-    {
-      "id": 12,
-      "nombre": "Lucía",
-      "apellido": "Fernández",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1008,
-        1004,
-        1005
-      ]
-    },
-    {
-      "id": 13,
-      "nombre": "José",
-      "apellido": "Mendoza",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1006,
-        1002,
-        1005
-      ]
-    },
-    {
-      "id": 14,
-      "nombre": "Verónica",
-      "apellido": "Herrera",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1003,
-        1004,
-        1005
-      ]
-    },
-    {
-      "id": 15,
-      "nombre": "Ricardo",
-      "apellido": "Vargas",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1001,
-        1004,
-        1007
-      ]
-    },
-    {
-      "id": 16,
-      "nombre": "Isabel",
-      "apellido": "Fuentes",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1006,
-        1004,
-        1005
-      ]
-    },
-    {
-      "id": 17,
-      "nombre": "Martín",
-      "apellido": "Rojas",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1002,
-        1003,
-        1009
-      ]
-    },
-    {
-      "id": 18,
-      "nombre": "Laura",
-      "apellido": "Alvarado",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1007,
-        1004,
-        1008
-      ]
-    },
-    {
-      "id": 19,
-      "nombre": "Eduardo",
-      "apellido": "Núñez",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1003,
-        1004,
-        1005
-      ]
-    },
-    {
-      "id": 20,
-      "nombre": "Gabriela",
-      "apellido": "Guzmán",
-      "fechaNacimiento": "2023-05-03T23:27:33.765Z",
-      "cursoID": [
-        1009,
-        1002,
-        1005
-      ]
+      "name": "Adriana",
+      "lastName": "Castillo",
+      "birthDate": "2023-05-03T23:27:33.765Z"
     }
   ],
-  "cursos": [
+  "courses": [
     {
-      "nombre": "Introducción a la Programación",
+      "name": "Introducción a la Programación",
       "id": 1001
     },
     {
-      "nombre": "Desarrollo Web con HTML, CSS y JavaScript",
+      "name": "Desarrollo Web con HTML, CSS y JavaScript",
       "id": 1002
     },
     {
-      "nombre": "Bases de Datos con SQL",
+      "name": "Bases de Datos con SQL",
       "id": 1003
     },
     {
-      "nombre": "Introducción a la Inteligencia Artificial",
+      "name": "Introducción a la Inteligencia Artificial",
       "id": 1004
     },
     {
-      "nombre": "Desarrollo de Aplicaciones Móviles",
+      "name": "Desarrollo de Aplicaciones Móviles",
       "id": 1005
     },
     {
-      "nombre": "Seguridad Informática",
+      "name": "Seguridad Informática",
       "id": 1006
     },
     {
-      "nombre": "Redes de Computadoras",
+      "name": "Redes de Computadoras",
       "id": 1007
     },
     {
-      "nombre": "Desarrollo de Videojuegos",
+      "name": "Desarrollo de Videojuegos",
       "id": 1008
     },
     {
-      "nombre": "Análisis de Datos con Python",
+      "name": "Análisis de Datos con Python",
       "id": 1009
     },
     {
-      "nombre": "Administración de Sistemas Linux",
+      "name": "Administración de Sistemas Linux",
       "id": 1010
+    }
+  ],
+  "inscriptions": [
+    {
+      "id": 2,
+      "studentId": 5,
+      "courseId": 1004
+    },
+    {
+      "id": 3,
+      "studentId": 10,
+      "courseId": 1008
+    },
+    {
+      "studentId": 7,
+      "courseId": 1009,
+      "id": 4
+    },
+    {
+      "studentId": 3,
+      "courseId": 1001,
+      "id": 5
+    },
+    {
+      "studentId": 4,
+      "courseId": 1001,
+      "id": 6
+    },
+    {
+      "studentId": 6,
+      "courseId": 1010,
+      "id": 7
+    },
+    {
+      "studentId": 9,
+      "courseId": 1002,
+      "id": 8
     }
   ]
 }

@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatSidenav} from "@angular/material/sidenav";
 import {AuthService} from "../auth/services/auth.service";
-import {iUsuario} from "../core/interfaces/iUsuario";
 import {NavItem} from "../core/class/NavItem";
 
 @Component({

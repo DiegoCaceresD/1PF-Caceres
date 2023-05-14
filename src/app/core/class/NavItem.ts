@@ -12,6 +12,10 @@ export class NavItem implements iNavItem {
     {
       path:'cursos',
       titulo: 'Cursos'
+    },
+    {
+      path:'inscripciones',
+      titulo: 'Inscripciones'
     }
   ]
 }

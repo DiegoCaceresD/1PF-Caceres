@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {iCurso} from "../../core/interfaces/iCurso";
+import {iCourse} from "../../core/interfaces/iCourse";
 import {MatDialog} from "@angular/material/dialog";
 import {CursosService} from "./services/cursos.service";
 import {MatTableDataSource} from "@angular/material/table";
@@ -16,33 +16,32 @@ import {Router} from "@angular/router";
 export class CursosListComponent implements OnInit, OnDestroy {
 
 
-  cursos: iCurso[] = []
-  cursosSuscription: Subscription;
-  dataSource = new MatTableDataSource<iCurso>();
+  courses: iCourse[] = [];
+  coursesSubscription: Subscription;
+  dataSource = new MatTableDataSource<iCourse>();
 
   constructor(private matDialog: MatDialog, private cursosService: CursosService, private router: Router) {
   }
 
   ngOnInit(): void {
-   this.cargarCursos()
+   this.loadCourses()
   }
-  cargarCursos(){
-    this.cursosSuscription = this.cursosService.getListaCursos()
+
+  ngOnDestroy(): void {
+    this.coursesSubscription.unsubscribe()
+  }
+
+  displayedColumns: string[] = ['id', 'nombre', 'ver_detalle', 'delete', 'edit']
+
+  loadCourses(){
+    this.coursesSubscription = this.cursosService.courses$
       .subscribe({
-          next: (cursos) => {
-            console.log(cursos)
-            this.dataSource.data = cursos
+          next: (courses) => {
+            this.dataSource.data = courses
           }
         }
       )
   }
-
-  ngOnDestroy(): void {
-    this.cursosSuscription.unsubscribe()
-  }
-
-
-  displayedColumns: string[] = ['id', 'nombre', 'ver_detalle', 'delete', 'edit']
 
   aplicarFiltro(event: KeyboardEvent) {
     const filterValue = (event.target as HTMLInputElement)?.value
@@ -55,15 +54,12 @@ export class CursosListComponent implements OnInit, OnDestroy {
 
     dialog.afterClosed().subscribe((valor) => {
       if (valor) {
-        this.cursosService.crearCurso(valor).subscribe(curso => this.cursos.push(curso));
+        this.cursosService.crearCurso(valor).subscribe();
       }
     })
-
-    this.cargarCursos()
-
   }
 
-  editarCurso(cursoParaEditar: iCurso): void {
+  editarCurso(cursoParaEditar: iCourse): void {
     const dialog = this.matDialog.open(CursosAbmComponent, {
       data: {
         cursoParaEditar
@@ -75,7 +71,6 @@ export class CursosListComponent implements OnInit, OnDestroy {
       (cursoEditado) => {
         if (cursoEditado){
         this.cursosService.editarCurso(cursoParaEditar.id, cursoEditado).subscribe()
-
         }
       }
     )

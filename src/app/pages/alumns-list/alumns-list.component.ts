@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
-import {Alumno} from "../../core/class/Alumno";
+import {Student} from "../../core/class/Student";
 import {AlumnosAbmComponent} from "./alumnos-abm/alumnos-abm.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AlumnosService} from "./services/alumnos.service";
@@ -17,17 +17,13 @@ import {Subscription} from "rxjs";
 })
 export class AlumnsListComponent implements OnInit, OnDestroy {
 
-  alumnos: Alumno[] = [];
+  alumnos: Student[] = [];
   alumnosSubscription: Subscription;
   constructor(private matDialog: MatDialog,  private alumnosService: AlumnosService, private router: Router)
   {}
 
   ngOnInit(): void {
-   this.alumnosSubscription = this.alumnosService.getListaAlumnos().subscribe({
-      next: (cursos) =>{
-        this.dataSource.data = cursos
-      }
-    })
+    this.cargarAlumnos()
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -46,6 +42,15 @@ export class AlumnsListComponent implements OnInit, OnDestroy {
     this.dataSource.filter = filterValue.trim()?.toLowerCase()
   }
 
+  cargarAlumnos(){
+    this.alumnosSubscription = this.alumnosService.students$
+      .subscribe({
+        next: (cursos) =>{
+          this.dataSource.data = cursos
+        }
+      })
+  }
+
   crearAlumno():void {
    const dialog = this.matDialog.open(AlumnosAbmComponent)
 
@@ -56,7 +61,7 @@ export class AlumnsListComponent implements OnInit, OnDestroy {
     })
   }
 
-  editarAlumno(alumnoParaEditar: Alumno):void {
+  editarAlumno(alumnoParaEditar: Student):void {
     const dialog = this.matDialog.open(AlumnosAbmComponent, {
       data: {
         alumnoParaEditar

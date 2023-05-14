@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {AlumnosService} from "../services/alumnos.service";
 import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
-import {Alumno} from "../../../core/class/Alumno";
+import {Student} from "../../../core/class/Student";
 import {CursosService} from "../../cursos-list/services/cursos.service";
-import {iCurso} from "../../../core/interfaces/iCurso";
+import {iCourse} from "../../../core/interfaces/iCourse";
 
 
 @Component({
@@ -14,8 +14,8 @@ import {iCurso} from "../../../core/interfaces/iCurso";
 })
 export class AlumnoDetalleComponent implements OnInit {
 
-  alumno: Alumno | undefined;
-  cursos: iCurso[];
+  alumno: Student | undefined;
+  cursos: iCourse[];
   constructor(private activatedRoute: ActivatedRoute, alumnosService: AlumnosService) {
 
      alumnosService.getAlumnoById(parseInt(activatedRoute.snapshot.params['id']))

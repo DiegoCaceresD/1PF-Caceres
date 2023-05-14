@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CursosService} from "../services/cursos.service";
-import {iCurso} from "../../../core/interfaces/iCurso";
+import {iCourse} from "../../../core/interfaces/iCourse";
 
 
 @Component({
@@ -11,7 +11,7 @@ import {iCurso} from "../../../core/interfaces/iCurso";
 })
 export class CursoDetalleComponent implements OnInit {
 
-  curso: iCurso | undefined;
+  curso: iCourse | undefined;
 
   constructor(private activatedRoute: ActivatedRoute, cursosService: CursosService) {
     cursosService.getCursoById(parseInt(activatedRoute.snapshot.params['id']))

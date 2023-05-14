@@ -1,8 +1,8 @@
 export interface IPersona {
   id: number,
-  nombre: string,
-  apellido: string,
-  fechaNacimiento: Date
+  name: string,
+  lastName: string,
+  birthDate: Date
 }
 
 export interface CrearAlumno{

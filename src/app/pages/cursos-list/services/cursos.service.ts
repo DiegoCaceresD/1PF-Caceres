@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, forkJoin, map, mergeMap, Observable, pipe, switchMap, take, tap} from "rxjs";
-import {CrearCursoData, iCurso} from "../../../core/interfaces/iCurso";
+import {CrearCursoData, iCourse} from "../../../core/interfaces/iCourse";
 import {AlumnosService} from "../../alumns-list/services/alumnos.service";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
@@ -11,27 +11,52 @@ import {environment} from "../../../../environments/environment";
 })
 export class CursosService {
 
+  private course = new BehaviorSubject<iCourse[]>([])
+  public courses$ = this.course.asObservable()
+  private updateCourses$ = this.getListaCursos()
+    .pipe(
+      map((c)=>{
+        this.course.next(c)
+      })
+    );
 
   constructor(private alumnosServices: AlumnosService, private httpClient: HttpClient) {
+    this.updateCourses$.subscribe()
   }
 
-  getListaCursos(): Observable<iCurso[]> {
-    return this.httpClient.get<iCurso[]>(`${environment.baseUrl}/cursos`)
+
+  getListaCursos(): Observable<iCourse[]> {
+    return this.httpClient.get<iCourse[]>(`${environment.baseUrl}/courses`)
   }
 
-  getCursoById(idCurso: number): Observable<iCurso | undefined> {
-    return this.httpClient.get<iCurso>(`${environment.baseUrl}/cursos/` + idCurso)
+  getCursoById(idCurso: number): Observable<iCourse | undefined> {
+    return this.httpClient.get<iCourse>(`${environment.baseUrl}/courses/` + idCurso)
   }
 
-  crearCurso(data: CrearCursoData): Observable<iCurso> {
-    return this.httpClient.post<iCurso>(`${environment.baseUrl}/cursos`, data)
+  crearCurso(data: CrearCursoData): Observable<void> {
+    return this.httpClient.post<iCourse>(`${environment.baseUrl}/courses`, data)
+      .pipe(
+        switchMap(()=>{
+          return this.updateCourses$;
+        })
+      )
   }
 
-  editarCurso(idCurso: number, cursoEditado: Partial<iCurso>): Observable<iCurso> {
-    return this.httpClient.put<iCurso>(`${environment.baseUrl}/cursos/` + idCurso, cursoEditado)
+  editarCurso(idCurso: number, cursoEditado: Partial<iCourse>): Observable<void>  {
+    return this.httpClient.put<iCourse>(`${environment.baseUrl}/courses/` + idCurso, cursoEditado)
+      .pipe(
+        switchMap(()=>{
+          return this.updateCourses$;
+        })
+      )
   }
 
-  eliminarCurso(idCurso: number): Observable<iCurso> {
-    return this.httpClient.delete<iCurso>(`${environment.baseUrl}/cursos/`+idCurso)
+  eliminarCurso(idCurso: number): Observable<void> {
+    return this.httpClient.delete<iCourse>(`${environment.baseUrl}/courses/`+idCurso)
+      .pipe(
+        switchMap(()=>{
+          return this.updateCourses$
+        })
+      )
   }
 }
