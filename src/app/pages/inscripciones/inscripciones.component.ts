@@ -17,7 +17,7 @@ export class InscripcionesComponent implements OnInit, OnDestroy {
   dataSource = new MatTableDataSource;
   displayedColumns: String[] =['inscripcionID', 'alumno', 'cursos', 'delete', 'edit', ]
 
-  constructor(private inscrpcionServices: InscripcionService, private matDialog: MatDialog) {
+  constructor(private inscriptionServices: InscripcionService, private matDialog: MatDialog) {
 
   }
 
@@ -30,7 +30,7 @@ export class InscripcionesComponent implements OnInit, OnDestroy {
   }
 
   loadInscriptions(){
-    this.inscriptionSubscription =  this.inscrpcionServices.inscriptions$
+    this.inscriptionSubscription =  this.inscriptionServices.inscriptions$
       .subscribe({
         next:(inscriptions)=>{
           this.dataSource.data = inscriptions;
@@ -38,16 +38,18 @@ export class InscripcionesComponent implements OnInit, OnDestroy {
       })
   }
 
-  crearInscripcion() {
-
+  createInscription() {
     const dialog = this.matDialog.open(InscripcionesAbmComponent)
     dialog.afterClosed()
       .subscribe((valor)=>{
         let data: NewInscription = {studentId: valor.student.id, courseId: valor.course.id};
-      this.inscrpcionServices.crearInscripcion(data).subscribe()
+      this.inscriptionServices.createInscription(data).subscribe()
     })
+    this.inscriptionServices.inscriptions$.subscribe()
+  }
 
-    this.inscrpcionServices.inscriptions$.subscribe()
+  deleteInscription(ev:number){
+    this.inscriptionServices.deleteInscription(ev).subscribe()
   }
 }
 

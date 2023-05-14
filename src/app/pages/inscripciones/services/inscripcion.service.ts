@@ -11,7 +11,7 @@ export class InscripcionService {
 
   private inscriptions = new BehaviorSubject<Inscription[]>([])
   public inscriptions$ = this.inscriptions.asObservable();
-  private updateInscriptions$ = this.getInscripcionesList()
+  private updateInscriptions$ = this.getInscriptionsList()
     .pipe(
       map((i)=>{
         this.inscriptions.next(i)
@@ -22,16 +22,25 @@ export class InscripcionService {
   }
 
 
-  getInscripcionesList(): Observable<Inscription[]>{
+  getInscriptionsList(): Observable<Inscription[]>{
     return this.httpClient.get<Inscription[]>(`${environment.baseUrl}/inscriptions?_expand=course&_expand=student`)
   }
 
-  crearInscripcion(data: NewInscription): Observable<void>{
+  createInscription(data: NewInscription): Observable<void>{
 
     return this.httpClient.post<Inscription>(`${environment.baseUrl}/inscriptions`, data)
       .pipe(
         switchMap(()=>{
           return this.updateInscriptions$;
+        })
+      )
+  }
+
+  deleteInscription(idInscription: number): Observable<void>{
+    return this.httpClient.delete<Inscription>(`${environment.baseUrl}/inscriptions/`+idInscription)
+      .pipe(
+        switchMap(()=>{
+          return this.updateInscriptions$
         })
       )
   }
