@@ -7,6 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AlumnosService} from "./services/alumnos.service";
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
+import {AuthService} from "../../auth/services/auth.service";
 
 
 
@@ -19,17 +20,20 @@ export class AlumnsListComponent implements OnInit, OnDestroy {
 
   alumnos: Student[] = [];
   alumnosSubscription: Subscription;
-  constructor(private matDialog: MatDialog,  private alumnosService: AlumnosService, private router: Router)
+  authSubscription: Subscription;
+  isAdmin: boolean;
+  constructor(private matDialog: MatDialog,  private alumnosService: AlumnosService, private router: Router, private authService: AuthService)
   {}
 
   ngOnInit(): void {
     this.cargarAlumnos()
+    this.validateAdmin()
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
   ngOnDestroy(): void{
-    this.alumnosSubscription.unsubscribe()
+    this.alumnosSubscription.unsubscribe();
   };
   @ViewChild(MatPaginator) paginator: MatPaginator ;
 
@@ -85,4 +89,9 @@ export class AlumnsListComponent implements OnInit, OnDestroy {
   verDetalle(alumnoId: number) {
     this.router.navigate(['dashboard','alumnos', alumnoId])
   }
+
+  validateAdmin(){
+    this.isAdmin = this.authService.validateAdmin()
+    }
+
 }

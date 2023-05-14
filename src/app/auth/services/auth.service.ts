@@ -58,5 +58,17 @@ export class AuthService {
       )
   }
 
+  logOut(){
+    localStorage.removeItem('token')
+    this.router.navigate(['auth','login'])
+  }
 
+  validateAdmin(): boolean{
+    let isAdmin
+    this.obtenerUsuarioAutenticado()
+      .subscribe((authUser)=>{
+        isAdmin= authUser?.role
+      })
+    return isAdmin === "admin"
+  }
 }

@@ -8,10 +8,11 @@
 
   <!-- SIDEBAR -->
   <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
-    <mat-nav-list>
-      <p>
-      <a mat-list-item  [routerLink]="['/dashboard',link.path]" class="m-3" *ngFor="let link of links">{{ link.titulo }}</a>
-      </p>
+    <mat-nav-list class="nav-list">
+      <a mat-list-item  [routerLink]="['/dashboard',link.path]" class="mb-3" *ngFor="let link of links">{{ link.titulo }}</a>
+      <a mat-list-item class="mt-auto" (click)="logOut()">
+        Log Out
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 

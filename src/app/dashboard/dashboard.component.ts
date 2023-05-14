@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
 
   toggle: Boolean = false;
   links = NavItem.links;
+  isAdmin:boolean;
 
   constructor(private authService: AuthService) {
   }
@@ -27,4 +28,9 @@ export class DashboardComponent implements OnInit {
     this.reason = reason;
     this.sidenav?.close();
   }
+
+  logOut() {
+    this.authService.logOut()
+  }
+
 }

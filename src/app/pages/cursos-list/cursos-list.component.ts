@@ -6,6 +6,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {CursosAbmComponent} from "./cursos-abm/cursos-abm.component";
 import {map, Subscription} from "rxjs";
 import {Router} from "@angular/router";
+import {AuthService} from "../../auth/services/auth.service";
 
 
 @Component({
@@ -15,16 +16,16 @@ import {Router} from "@angular/router";
 })
 export class CursosListComponent implements OnInit, OnDestroy {
 
-
-  courses: iCourse[] = [];
+  isAdmin: Boolean;
   coursesSubscription: Subscription;
   dataSource = new MatTableDataSource<iCourse>();
 
-  constructor(private matDialog: MatDialog, private cursosService: CursosService, private router: Router) {
+  constructor(private matDialog: MatDialog, private cursosService: CursosService, private router: Router, private authService: AuthService) {
   }
 
   ngOnInit(): void {
    this.loadCourses()
+    this.validateAdmin()
   }
 
   ngOnDestroy(): void {
@@ -82,6 +83,10 @@ export class CursosListComponent implements OnInit, OnDestroy {
 
   verDetalle(cursoId: number) {
     this.router.navigate(['dashboard', 'cursos', cursoId])
+  }
+
+  validateAdmin(){
+    this.isAdmin = this.authService.validateAdmin()
   }
 
 }

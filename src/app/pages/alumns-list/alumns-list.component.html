@@ -46,10 +46,10 @@
   </ng-container>
 
   <!-- DELETE Column -->
-  <ng-container matColumnDef="delete">
+  <ng-container matColumnDef="delete" >
     <th appFontSize [size]="15" mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef = "let element">
-      <button mat-icon-button class="example-icon" aria-label="delete button" (click)="eliminarAlumno(element.id)">
+      <button mat-icon-button class="example-icon" aria-label="delete button" (click)="eliminarAlumno(element.id)" *ngIf="isAdmin">
         <mat-icon
           color="warn"
         >delete</mat-icon>
@@ -58,10 +58,10 @@
   </ng-container>
 
   <!-- DELETE Column -->
-  <ng-container matColumnDef="edit">
+  <ng-container matColumnDef="edit" >
     <th appFontSize [size]="15" mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef = "let element">
-      <button mat-icon-button class="example-icon" aria-label="Edit buttno" (click)="editarAlumno(element)">
+    <td mat-cell *matCellDef = "let element" >
+      <button mat-icon-button class="example-icon" aria-label="Edit buttno" (click)="editarAlumno(element)" *ngIf="isAdmin">
         <mat-icon
         >edit</mat-icon>
       </button>
