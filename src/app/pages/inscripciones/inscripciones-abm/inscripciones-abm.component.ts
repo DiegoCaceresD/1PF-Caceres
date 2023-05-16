@@ -3,7 +3,6 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CursosService} from "../../cursos-list/services/cursos.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {AlumnosService} from "../../alumns-list/services/alumnos.service";
-import {map} from "rxjs";
 import {iCourse} from "../../../core/interfaces/iCourse";
 import {Student} from "../../../core/class/Student";
 

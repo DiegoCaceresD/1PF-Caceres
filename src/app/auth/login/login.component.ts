@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   constructor( private authService: AuthService, private router: Router) {
     this.loginForm = new FormGroup({
-      usuario: this.usuarioControl,
+      user: this.usuarioControl,
       password: this.passwordControl,
     })
   }
@@ -28,8 +28,12 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.loginForm.valid){
       this.authService.login({
-        ...this.loginForm.value,
+        ...this.loginForm.value
     })
     }
+  }
+
+  registry() {
+    this.router.navigate(['auth','registry'])
   }
 }

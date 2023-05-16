@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, map, Observable, Subject} from "rxjs";
-import {IUser} from "../../core/interfaces/iUser";
+import {BehaviorSubject, map, Observable, Subject, switchMap} from "rxjs";
+import {IUser, NewUser} from "../../core/interfaces/iUser";
 import {Router} from "@angular/router";
 import {FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
@@ -22,7 +22,7 @@ export class AuthService {
 
   login(formValue: IUser): void {
     this.httpClient.get<IUser[]>(
-      `${environment.baseUrl}/usuarios`,
+      `${environment.baseUrl}/users`,
       {
         params: {
           ...formValue
@@ -31,7 +31,6 @@ export class AuthService {
     ).subscribe({
       next: (usuarios) => {
         const usuarioAutenticado = usuarios[0];
-
         if (usuarioAutenticado) {
           localStorage.setItem('token', usuarioAutenticado.token)
           this.usuarioAutenticado$.next(usuarioAutenticado)
@@ -45,7 +44,7 @@ export class AuthService {
 
   verificarToken(): Observable<boolean> {
     const token = localStorage.getItem('token')
-    return this.httpClient.get<IUser[]>(`${environment.baseUrl}/usuarios?token=${token}`)
+    return this.httpClient.get<IUser[]>(`${environment.baseUrl}/users?token=${token}`)
       .pipe(
         map((usuarios) => {
           const usuarioAutenticado = usuarios[0];
@@ -70,5 +69,11 @@ export class AuthService {
         isAdmin= authUser?.role
       })
     return isAdmin === "admin"
+  }
+
+  registerNewUser(data: NewUser):Observable<any>{
+    console.log(data)
+    return this.httpClient.post<IUser>(`${environment.baseUrl}/users`,data)
+
   }
 }

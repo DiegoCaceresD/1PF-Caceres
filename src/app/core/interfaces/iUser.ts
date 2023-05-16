@@ -1,7 +1,16 @@
 export interface IUser {
   id: number;
-  nombre: string;
-  usuario: string;
+  name: string;
+  user: string;
+  password: string;
+  email: string;
+  token: string;
+  role: string;
+}
+
+export interface NewUser {
+  name: string;
+  user: string;
   password: string;
   email: string;
   token: string;

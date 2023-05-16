@@ -1,24 +1,13 @@
 {
-  "usuarios": [
+  "users": [
     {
-      "id": 1,
-      "name": "Diego",
-      "lastName": "Caceres",
-      "usuario": "diego123",
-      "email": "dcacares2097@gmail.com",
-      "password": "123456",
-      "token": "a6s54df32ASDFasdf",
-      "role": "student"
-    },
-    {
-      "id": 2,
-      "name": "admin1",
-      "lastName": "admin",
-      "usuario": "admin",
-      "email": "admin@mail.com",
-      "password": "123456",
-      "token": "as3d1845td21AdsYIP",
-      "role": "admin"
+      "token": "EDeM1C7V0I",
+      "name": "test",
+      "user": "test1",
+      "email": "test@mail.com",
+      "password": "test123",
+      "role": "student",
+      "id": 1
     }
   ],
   "students": [

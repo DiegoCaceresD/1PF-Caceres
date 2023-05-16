@@ -24,7 +24,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
 
     this.authUserObs$ = this.authService.obtenerUsuarioAutenticado()
       .pipe(
-        map((user) => user?.usuario.toUpperCase())
+        map((user) => user?.user.toUpperCase())
       )
 
 

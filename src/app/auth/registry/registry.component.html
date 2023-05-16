@@ -1,0 +1,42 @@
+<form [formGroup]="registryForm" class="p-3">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre completo</mat-label>
+      <input matInput [formControl]="nameControl" required>
+      <mat-error *ngIf="registryForm.get('name')?.invalid">El nombre completo es requerido</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Usuario</mat-label>
+      <input matInput [formControl]="userControl" required>
+      <mat-error *ngIf="registryForm.get('user')?.invalid">El usuario completo es requerido</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [formControl]="emailControl" required>
+      <mat-error *ngIf="registryForm.get('email')?.invalid">El email es requerido y debe ser válido</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Contraseña</mat-label>
+      <input matInput type="password" [formControl]="passwordControl" required>
+      <mat-error *ngIf="registryForm.get('password')?.invalid">La contraseña es requerida</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Rol</mat-label>
+      <mat-select [formControl]="roleControl" >
+        <mat-option *ngFor="let option of roleOptions" [value]="option">{{option}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="!registryForm.valid" (click)="registry()">Registrarse</button>
+  </div>
+</form>
+

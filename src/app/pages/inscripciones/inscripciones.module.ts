@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InscripcionesComponent } from './inscripciones.component';
-import {RouterModule} from "@angular/router";
-import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
@@ -17,7 +15,6 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {ErrorsHelperModule} from "../../helpers/errors-helper/errors-helper.module";
 import {MatCardModule} from "@angular/material/card";
 import {MatDialogModule} from "@angular/material/dialog";
-import {MatSnackBar} from "@angular/material/snack-bar";
 import { InscripcionesAbmComponent } from './inscripciones-abm/inscripciones-abm.component';
 import {InscripcionesRoutingModule} from "./inscripciones-routing.module";
 
@@ -29,7 +26,6 @@ import {InscripcionesRoutingModule} from "./inscripciones-routing.module";
     InscripcionesAbmComponent
   ],
   imports: [
-    MatOptionModule,
     MatSelectModule,
     CommonModule,
     MatListModule,
@@ -42,7 +38,6 @@ import {InscripcionesRoutingModule} from "./inscripciones-routing.module";
     SharedModule,
     MatButtonModule,
     ReactiveFormsModule,
-    ErrorsHelperModule,
     MatCardModule,
     MatDialogModule,
     InscripcionesRoutingModule,
