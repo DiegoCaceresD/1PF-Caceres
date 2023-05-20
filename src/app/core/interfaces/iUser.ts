@@ -16,3 +16,7 @@ export interface NewUser {
   token: string;
   role: string;
 }
+export interface LoginUser{
+  user: string;
+  password: string;
+}

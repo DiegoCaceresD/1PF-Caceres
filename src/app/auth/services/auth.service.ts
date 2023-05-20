@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, map, Observable, Subject, switchMap} from "rxjs";
-import {IUser, NewUser} from "../../core/interfaces/iUser";
+import {BehaviorSubject, catchError, map, Observable, of, Subject, switchMap} from "rxjs";
+import {IUser, LoginUser, NewUser} from "../../core/interfaces/iUser";
 import {Router} from "@angular/router";
 import {FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
@@ -20,7 +20,7 @@ export class AuthService {
     return this.usuarioAutenticado$.asObservable()
   }
 
-  login(formValue: IUser): void {
+  login(formValue: LoginUser): void {
     this.httpClient.get<IUser[]>(
       `${environment.baseUrl}/users`,
       {
@@ -53,6 +53,9 @@ export class AuthService {
             this.usuarioAutenticado$.next(usuarioAutenticado)
           }
           return !!usuarioAutenticado;
+        }),
+        catchError((err)=>{
+          return of(false)
         })
       )
   }

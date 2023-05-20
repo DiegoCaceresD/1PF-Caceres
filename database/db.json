@@ -8,6 +8,15 @@
       "password": "test123",
       "role": "student",
       "id": 1
+    },
+    {
+      "token": "3dLp7ao2gz",
+      "name": "diego caceres",
+      "user": "diego123",
+      "email": "diego@mail.com",
+      "password": "123456",
+      "role": "admin",
+      "id": 2
     }
   ],
   "students": [
