@@ -13,6 +13,7 @@ import {RouterModule} from "@angular/router";
 import {AuthModule} from "./auth/auth.module";
 import {MatTableModule} from "@angular/material/table";
 import {HttpClientModule} from "@angular/common/http";
+import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {HttpClientModule} from "@angular/common/http";
     RouterModule,
     AuthModule,
     MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]

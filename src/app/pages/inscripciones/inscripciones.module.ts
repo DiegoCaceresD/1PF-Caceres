@@ -12,12 +12,14 @@ import {MatInputModule} from "@angular/material/input";
 import {SharedModule} from "../../shared/shared.module";
 import {MatButtonModule} from "@angular/material/button";
 import {ReactiveFormsModule} from "@angular/forms";
-import {ErrorsHelperModule} from "../../helpers/errors-helper/errors-helper.module";
 import {MatCardModule} from "@angular/material/card";
 import {MatDialogModule} from "@angular/material/dialog";
 import { InscripcionesAbmComponent } from './inscripciones-abm/inscripciones-abm.component';
 import {InscripcionesRoutingModule} from "./inscripciones-routing.module";
-
+import { EffectsModule } from '@ngrx/effects';
+import { InscripcionesEffects } from './store/inscripciones.effects';
+import {StoreModule} from "@ngrx/store";
+import {inscripcionesFeature} from "./store/inscripciones.reducer";
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import {InscripcionesRoutingModule} from "./inscripciones-routing.module";
     MatCardModule,
     MatDialogModule,
     InscripcionesRoutingModule,
+    StoreModule.forFeature(inscripcionesFeature),
+    EffectsModule.forFeature([InscripcionesEffects]),
   ],
   exports: [
     InscripcionesComponent
