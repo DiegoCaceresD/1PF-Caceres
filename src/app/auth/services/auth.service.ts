@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, catchError, map, Observable, of, Subject, switchMap} from "rxjs";
 import {IUser, LoginUser, NewUser} from "../../core/interfaces/iUser";
 import {Router} from "@angular/router";
-import {FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
+import {MatSnackBar} from "@angular/material/snack-bar";
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService {
 
   private usuarioAutenticado$ = new BehaviorSubject<IUser | null>(null);
 
-  constructor(private router: Router, private httpClient: HttpClient) {
+  constructor(private router: Router, private httpClient: HttpClient, private snackBar: MatSnackBar) {
   }
 
   obtenerUsuarioAutenticado(): Observable<IUser | null> {
@@ -36,7 +37,7 @@ export class AuthService {
           this.usuarioAutenticado$.next(usuarioAutenticado)
           this.router.navigate([''])
         } else {
-          console.log("credenciales incorrectas")
+          this.snackBar.open("Credenciales Incorrectas")
         }
       }
     })

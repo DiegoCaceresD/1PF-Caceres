@@ -3,6 +3,7 @@ import { AuthComponent } from './auth.component';
 import {MatCardModule} from "@angular/material/card";
 import {AuthRoutingModule} from "./auth-routing.module";
 import {RegistryModule} from "./registry/registry.module";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import {RegistryModule} from "./registry/registry.module";
   imports: [
     MatCardModule,
     AuthRoutingModule,
-    RegistryModule
+    RegistryModule,
+    MatSnackBarModule
   ]
 })
 export class AuthModule { }
