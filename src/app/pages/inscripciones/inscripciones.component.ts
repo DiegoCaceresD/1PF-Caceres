@@ -4,7 +4,11 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatDialog} from "@angular/material/dialog";
 import {InscripcionesAbmComponent} from "./inscripciones-abm/inscripciones-abm.component";
 import {NewInscription} from "../../core/interfaces/Inscription";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
+import {State} from "./store/inscripciones.reducer";
+import {Store} from "@ngrx/store";
+import {selectInscripcionesState} from "./store/inscripciones.selectors";
+import {InscripcionesActions} from "./store/inscripciones.actions";
 
 
 @Component({
@@ -13,15 +17,17 @@ import {Subscription} from "rxjs";
   styleUrls: ['./inscripciones.component.scss']
 })
 export class InscripcionesComponent implements OnInit, OnDestroy {
+  state$: Observable<State>
   inscriptionSubscription: Subscription;
   dataSource = new MatTableDataSource;
   displayedColumns: String[] =['inscripcionID', 'alumno', 'cursos', 'delete', 'edit', ]
 
-  constructor(private inscriptionServices: InscripcionService, private matDialog: MatDialog) {
-
+  constructor(private inscriptionServices: InscripcionService, private matDialog: MatDialog, private store: Store) {
+  this.state$ = this.store.select(selectInscripcionesState)
   }
 
   ngOnDestroy(): void {
+    this.store.dispatch(InscripcionesActions.loadInscripciones())
         this.inscriptionSubscription.unsubscribe()
     }
 

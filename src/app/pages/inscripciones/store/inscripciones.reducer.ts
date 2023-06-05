@@ -1,22 +1,41 @@
 import {Action, createFeature, createReducer, on} from '@ngrx/store';
-import * as InscripcionesActions from './inscripciones.actions';
+import {Inscription} from "../../../core/interfaces/Inscription";
+import {act} from "@ngrx/effects";
+import {InscripcionesActions} from "./inscripciones.actions";
 
 export const inscripcionesFeatureKey = 'inscripciones';
 
 export interface State {
+  inscriptions: Inscription[];
+  error:unknown;
 
 }
 
 export const initialState: State = {
-
+  inscriptions: [],
+  error:null
 };
 
-export const reducer = createReducer(
+export const reducer = createReducer<State>(
   initialState,
 
-  on(InscripcionesActions.loadInscripcioness, state => state),
-  on(InscripcionesActions.loadInscripcionessSuccess, (state, action) => state),
-  on(InscripcionesActions.loadInscripcionessFailure, (state, action) => state),
+  on( state => {
+    return {
+      ...state
+    }
+  }),
+  on(InscripcionesActions.loadInscripcionesSuccess, (state, action) => {
+    return {
+      ...state,
+      inscriptions: action.data
+    }
+  }),
+  on(InscripcionesActions.loadInscripcionesFailure, (state, action) => {
+    return{
+      ...state,
+      error: action.error
+    }
+  }),
 
 );
 

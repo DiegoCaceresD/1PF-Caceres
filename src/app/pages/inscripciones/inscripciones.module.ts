@@ -45,6 +45,7 @@ import {inscripcionesFeature} from "./store/inscripciones.reducer";
     InscripcionesRoutingModule,
     StoreModule.forFeature(inscripcionesFeature),
     EffectsModule.forFeature([InscripcionesEffects]),
+    EffectsModule.forRoot([])
   ],
   exports: [
     InscripcionesComponent
